@@ -1,0 +1,92 @@
+[
+    {
+        "job_title": "Software Engineer",
+        "employer_name": "Company A",
+        "job_city": "Dordrecht",
+        "job_employment_type": "Full-time",
+        "job_educational_level": {
+            "high_school": false,
+            "associates_degree": false,
+            "bachelors_degree": true,
+            "postgraduate_degree": false,
+            "professional_certification": false
+        },
+        "job_min_salary": 50000,
+        "job_max_salary": 70000,
+        "job_posted_at_datetime_utc": "2022-01-01T00:00:00.000Z",
+        "job_description": "Job description A",
+        "employer_website": "https://www.companya.com"
+    },
+    {
+        "job_title": "Data Scientist",
+        "employer_name": "Company B",
+        "job_city": "Ridderkerk",
+        "job_employment_type": "Part-time",
+        "job_educational_level": {
+            "high_school": false,
+            "associates_degree": false,
+            "bachelors_degree": true,
+            "postgraduate_degree": true,
+            "professional_certification": false
+        },
+        "job_min_salary": 60000,
+        "job_max_salary": 80000,
+        "job_posted_at_datetime_utc": "2022-02-01T00:00:00.000Z",
+        "job_description": "Job description B",
+        "employer_website": "https://www.companyb.com"
+    },
+    {
+        "job_title": "Web Developer",
+        "employer_name": "Company C",
+        "job_city": "Sliedrecht",
+        "job_employment_type": "Full-time",
+        "job_educational_level": {
+            "high_school": false,
+            "associates_degree": true,
+            "bachelors_degree": true,
+            "postgraduate_degree": false,
+            "professional_certification": false
+        },
+        "job_min_salary": 55000,
+        "job_max_salary": 75000,
+        "job_posted_at_datetime_utc": "2022-01-15T00:00:00.000Z",
+        "job_description": "Job description C",
+        "employer_website": "https://www.companyc.com"
+    },
+    {
+        "job_title": "Data Analyst",
+        "employer_name": "Papendrecht",
+        "job_city": "Hardinxveld-Giessendam",
+        "job_employment_type": "Part-time",
+        "job_educational_level": {
+            "high_school": false,
+            "associates_degree": false,
+            "bachelors_degree": true,
+            "postgraduate_degree": true,
+            "professional_certification": true
+        },
+        "job_min_salary": 65000,
+        "job_max_salary": 85000,
+        "job_posted_at_datetime_utc": "2022-02-15T00:00:00.000Z",
+        "job_description": "Job description D",
+        "employer_website": "https://www.companyd.com"
+    },
+    {
+        "job_title": "System Administrator",
+        "employer_name": "Company E",
+        "job_city": "Alblasserdam",
+        "job_employment_type": "Full-time",
+        "job_educational_level": {
+            "high_school": true,
+            "associates_degree": true,
+            "bachelors_degree": false,
+            "postgraduate_degree": false,
+            "professional_certification": true
+        },
+        "job_min_salary": 45000,
+        "job_max_salary": 65000,
+        "job_posted_at_datetime_utc": "2022-03-01T00:00:00.000Z",
+        "job_description": "Job description E",
+        "employer_website": "https://www.companye.com"
+    }
+]

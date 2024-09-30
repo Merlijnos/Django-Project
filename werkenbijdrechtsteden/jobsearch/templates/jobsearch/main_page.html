@@ -1,0 +1,211 @@
+{% extends "jobsearch/base.html" %}
+{% load static %}
+{% block content %}
+<main class="container mt-5">
+    <div class="content-column">
+        <h2 class="job-count">Totaal aantal vacatures: {{ total_jobs }}</h2>
+        <div class="filter-section">
+            <div class="search-bar-wrapper">
+                <div class="search-bar">
+                    <form method="GET" action="">
+                        <label>
+                            <input type="text" name="query" placeholder="Search jobs" value="{{ request.GET.query }}">
+                        </label>
+                        <input type="submit" value="Search" style="visibility: hidden; position: absolute;">
+                    </form>
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="spinner" style="display: none;">
+                    <img src="{% static 'image/spinner.gif' %}" alt="Loading...">
+                </div>
+            </div>
+        </div>
+        <section class="d-flex">
+            <form method="get" class="form-filter mr-5">
+                <div class="filter-section">
+                    <h3>Locatie</h3>
+                    <div class="checkbox">
+                        <div>
+                            <input type="checkbox" id="location1" name="location" value="Dordrecht">
+                            <label for="location1">Dordrecht</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="location2" name="location" value="Zwijndrecht">
+                            <label for="location2">Zwijndrecht</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="location3" name="location" value="Papendrecht">
+                            <label for="location3">Papendrecht</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="location4" name="location" value="Hendrik-Ido-Ambacht">
+                            <label for="location4">Hendrik-Ido-Ambacht</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="location5" name="location" value="Sliedrecht">
+                            <label for="location5">Sliedrecht</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="location6" name="location" value="Alblasserdam">
+                            <label for="location6">Alblasserdam</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="location7" name="location" value="Ridderkerk">
+                            <label for="location7">Ridderkerk</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h3>Soort baan</h3>
+                    <div class="checkbox">
+                        <div>
+                            <input type="checkbox" id="type1" name="type" value="Full-time">
+                            <label for="type1">Fulltime</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="type2" name="type" value="Part-time">
+                            <label for="type2">Parttime</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="type3" name="type" value="Stage">
+                            <label for="type3">Stage</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="type4" name="type" value="Bijbaan">
+                            <label for="type4">Bijbaan</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h3>Opleidingsniveau</h3>
+                    <div class="checkbox">
+                        <div>
+                            <input type="checkbox" id="education1" name="education" value="high_school">
+                            <label for="education1">VMBO</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="education2" name="education" value="associates_degree">
+                            <label for="education2">MBO</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="education3" name="education" value="bachelors_degree">
+                            <label for="education3">HBO</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="education4" name="education" value="postgraduate_degree">
+                            <label for="education4">WO</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="education5" name="education" value="professional_certification">
+                            <label for="education5">Professionele certificering</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h3>Sorteren op datum</h3>
+                    <div class="checkbox">
+                        <div>
+                            <input type="radio" id="date_asc" name="sort_date" value="asc">
+                            <label for="date_asc">Oplopend</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="date_desc" name="sort_date" value="desc">
+                            <label for="date_desc">Aflopend</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h3>Sorteren op titel</h3>
+                    <div class="checkbox">
+                        <div>
+                            <input type="radio" id="title_asc" name="sort_title" value="asc">
+                            <label for="title_asc">A-Z</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="title_desc" name="sort_title" value="desc">
+                            <label for="title_desc">Z-A</label>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Filteren">
+                <input type="reset" value="Wissen">
+            </form>
+            <div class="job-listings flex-grow-1">
+                {% for job in page_obj %}
+                <div class="job-listings flex-grow-1">
+                    <li class="list-group-item mb-3 company">
+                        <div style="position: relative;">
+                            {% if job.employer_logo %}
+                            <img src="{{ job.employer_logo }}" alt="{{ job.employer_name }} logo" style="width: 50px; height: 50px; position: absolute; top: 0; right: 0;">
+                            {% endif %}
+                        </div>
+                            <h3 class="mb-1">{{ job.job_title }}</h3>
+                        <p class="text-muted">{{ job.employer_name }}</p>
+                        <p class="mb-2">Locatie: {{ job.job_city }}, {{ job.job_state }}</p>
+                        <p class="mb-2">Dienstverband: {{ job.job_employment_type }}</p>
+                        <p class="mb-2">
+                            Opleidingsniveau:
+                            {% if True in job.job_educational_level.values %}
+                                {% for level, required in job.job_educational_level.items %}
+                                    {% if required %}
+                                        {% if level == "high_school" %}
+                                            VMBO
+                                        {% elif level == "associates_degree" %}
+                                            MBO
+                                        {% elif level == "bachelors_degree" %}
+                                            HBO
+                                        {% elif level == "postgraduate_degree" %}
+                                            WO
+                                        {% elif level == "professional_certification" %}
+                                            Professionele certificering
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                Not required
+                            {% endif %}
+                        </p>
+                        {% if job.job_min_salary and job.job_max_salary %}
+                        <p>Salaris: €{{ job.job_min_salary }} - {{ job.job_max_salary }}</p>
+                        {% endif %}
+                        <p class="mb-2">Geplaatst op: {{ job.job_posted_at_datetime_utc|date:"Y-m-d" }}</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#jobModal{{ forloop.counter }}">
+                            Details
+                        </button>
+                    </li>
+                </div>
+                <div class="modal fade-in-modal" id="jobModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="jobModalLabel{{ forloop.counter }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="jobModalLabel{{ job.id }}">{{ job.job_title }}</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Werkgever:</strong> {{ job.employer_name }}</p>
+                                <p><strong>Locatie:</strong> {{ job.job_city }}</p>
+                                <p><strong>Geplaatst op:</strong> {{ job.job_posted_at_datetime_utc|date:"Y-m-d" }}</p>
+                                <p><strong>Omschrijving:</strong> {{ job.job_description }}</p>
+                                {% if job.employer_website %}
+                                <p><strong>Website:</strong> <a href="{{ job.employer_website }}">{{ job.employer_website }}</a></p>
+                                {% endif %}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="pagination-buttons">
+                    {% if page_obj.has_previous %}
+                    <a href="{% url 'main_page' page=page_obj.previous_page_number %}" class="btn btn-primary pagination-button">Vorige pagina</a>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <a href="{% url 'main_page' page=page_obj.next_page_number %}" class="btn btn-primary pagination-button">Volgende pagina</a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
